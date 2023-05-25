@@ -1,0 +1,19 @@
+<h1>Movies</h1>
+
+<div class="container">
+  <div class="row">
+    <% @movies.each do |movie| %>
+      <div class="col-md-4">
+        <div class="card mb-4">
+          <%= image_tag movie.poster_url, class: "card-img-top" %>
+          <div class="card-body">
+            <h5 class="card-title"><%= movie.title %></h5>
+            <p class="card-text"><%= movie.overview %></p>
+            <p class="card-text"><small class="text-muted">Rating: <%= movie.rating %></small></p>
+            <%= link_to "Show", movie_path(movie), class: "btn btn-primary" %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
