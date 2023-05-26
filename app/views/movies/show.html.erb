@@ -1,17 +1,16 @@
-<h1>Movie Details</h1>
-
 <div class="container">
+  <h1><%= @movie.title %></h1>
   <div class="row">
     <div class="col-md-4">
-      <%= image_tag @movie.poster_url, class: "img-fluid" %>
+      <img src="<%= @movie.poster_url %>" class="img-fluid" alt="<%= @movie.title %>">
     </div>
     <div class="col-md-8">
-      <h2><%= @movie.title %></h2>
       <p><%= @movie.overview %></p>
-      <p><small class="text-muted">Rating: <%= @movie.rating %></small></p>
-      <%= link_to "Edit", edit_movie_path(@movie), class: "btn btn-primary" %>
-      <%= link_to "Delete", movie_path(@movie), data: { turbo_method: :delete, turbo_confirm: "are you sure?" }, class: "btn btn-danger btn-sm" %>
-      <%= link_to "Back", movies_path, class: "btn btn-secondary" %>
+      <p>Rating: <%= @movie.rating %></p>
+      <p>Lists: <%= @movie.lists.map(&:name).join(", ") %></p>
+      <%= link_to 'Go back', lists_path(@list), class: 'btn btn-primary' %>
+      <%= link_to 'Edit', edit_movie_path(@movie), class: 'btn btn-secondary' %>
+      <%= link_to 'Destroy', movie_path(@movie), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
     </div>
   </div>
 </div>

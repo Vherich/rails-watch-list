@@ -1,21 +1,20 @@
-<h1>Lists</h1>
-
 <div class="container">
+  <h1>Lists</h1>
+  <%= link_to 'New List', new_list_path, class: 'btn btn-primary' %>
   <div class="row">
     <% @lists.each do |list| %>
       <div class="col-md-4">
-        <div class="card mb-4">
+        <div class="card mb-3">
           <img src="<%= list.image_url %>" class="card-img-top" alt="<%= list.name %>">
           <div class="card-body">
             <h5 class="card-title"><%= list.name %></h5>
-            <%= link_to "Show", list_path(list), class: "btn btn-primary" %>
-            <%= link_to "Edit", edit_list_path(list), class: "btn btn-secondary" %>
-            <%= link_to "Delete", list_path(list), method: :delete, data: { turbo_confirm: "Are you sure?" }, class: "btn btn-danger" %>
+            <p class="card-text"><%= pluralize(list.movies.count, 'movie') %> in this list</p>
+            <%= link_to 'Show', list_path(list), class: 'btn btn-secondary' %>
+            <%= link_to 'Edit', edit_list_path(list), class: 'btn btn-secondary' %>
+            <%= link_to 'Destroy', list_path(list), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
           </div>
         </div>
       </div>
     <% end %>
   </div>
-
-  <%= link_to "New List", new_list_path, class: "btn btn-success" %>
 </div>

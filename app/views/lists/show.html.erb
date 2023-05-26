@@ -1,2 +1,17 @@
-<h1>Lists#show</h1>
-<p>Find me in app/views/lists/show.html.erb</p>
+<div class="container">
+  <h1><%= @list.name %></h1>
+  <%= link_to 'Go back', lists_path(@list), class: 'btn btn-primary' %>
+  <img src="<%= @list.image_url %>" class="img-fluid" alt="<%= @list.name %>">
+  <h2>Movies</h2>
+  <div class="row">
+    <% @list.movies.each do |movie| %>
+      <%= render partial: "movies/movie", locals: { movie: movie } %>
+      <% bookmark = movie.bookmarks.find_by(list_id: @list.id) %>
+      <%= link_to 'New Bookmark', new_movie_bookmark_path(movie_id: movie.id, list_id: @list.id), class: 'btn btn-primary' %>
+      <%= link_to 'Remove', bookmark_path(bookmark), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
+    <% end %>
+  </div>
+  <%= link_to 'Edit', edit_list_path(@list), class: 'btn btn-secondary' %>
+  <%= link_to 'Destroy', list_path(@list), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
+  <%= link_to 'New Bookmark', new_movie_bookmark_path(movie_id: @list.movies.first.id, list_id: @list.id), class: 'btn btn-primary' %>
+</div>

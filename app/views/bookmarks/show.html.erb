@@ -1,0 +1,8 @@
+<div class="container">
+  <h1>Bookmark</h1>
+  <p>Movie: <%= @bookmark.movie.title %></p>
+  <p>List: <%= @bookmark.list.name %></p>
+  <p>Comment: <%= @bookmark.comment %></p>
+  <%= link_to 'Edit', edit_bookmark_path(@bookmark), class: 'btn btn-secondary' %>
+  <%= link_to 'Destroy', bookmark_path(@bookmark), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
+</div>
